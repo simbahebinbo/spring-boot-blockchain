@@ -1,15 +1,22 @@
 package com.github.lansheng228.blockchain;
 
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.junit4.SpringRunner;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(classes = SpringBootBlockchainApplication.class)
-//public class SpringBootBlockchainApplicationTests {
-//
-//    @Test
-//    public void contextLoads() {
-//    }
-//}
+@Slf4j
+@ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@SpringBootTest
+@EnableConfigurationProperties
+public class SpringBootBlockchainApplicationTests {
+
+    @Test
+    public void contextLoads() {
+        log.info("load...");
+    }
+}
