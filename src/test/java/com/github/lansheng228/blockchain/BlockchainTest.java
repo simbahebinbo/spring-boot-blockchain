@@ -5,6 +5,8 @@
 package com.github.lansheng228.blockchain;
 
 import com.github.lansheng228.blockchain.cli.CLI;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * 测试
@@ -12,6 +14,7 @@ import com.github.lansheng228.blockchain.cli.CLI;
  * @author chenhx
  * @version BlockchainTest.java, v 0.1 2018-10-11 下午 9:23
  */
+@Slf4j
 public class BlockchainTest {
 
     public static void main(String[] args) {
@@ -40,6 +43,11 @@ public class BlockchainTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void contextLoads() {
+        log.info("BlockchainTest...");
     }
 
 }

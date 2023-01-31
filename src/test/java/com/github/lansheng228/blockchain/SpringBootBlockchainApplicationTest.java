@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 @EnableConfigurationProperties
-public class SpringBootBlockchainApplicationTests {
+public class SpringBootBlockchainApplicationTest {
 
     @Test
     public void contextLoads() {
