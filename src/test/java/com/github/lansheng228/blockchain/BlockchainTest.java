@@ -19,7 +19,7 @@ public class BlockchainTest {
         // 15J63sETC6WuoVKZbtKxbWXsiA9W6THRAv 180000235  540000705
         try {
             //创建钱包
-//            String[] argss = {"createwallet"}; //18:35:21.926 [main] INFO com.uifuture.springbootblockchain.cli.CLI - wallet address : 16vdpva8tMNJXLjxafmbD7ZEwB3xoZ58AZ
+//            String[] argss = {"createwallet"}; //18:35:21.926 [main] INFO  - wallet address : 16vdpva8tMNJXLjxafmbD7ZEwB3xoZ58AZ
             //创建区块链
             String[] argss = {"createblockchain", "-address", "16vdpva8tMNJXLjxafmbD7ZEwB3xoZ58AZ"};
             // 打印所有钱包地址
