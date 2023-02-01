@@ -1,7 +1,3 @@
-/**
- * fshows.com
- * Copyright (C) 2013-2018 All Rights Reserved.
- */
 package com.github.lansheng228.blockchain.block;
 
 import com.github.lansheng228.blockchain.bd.RocksDBUtils;
@@ -28,16 +24,12 @@ import java.util.Map;
 
 /**
  * 区块链
- * AllArgsConstructor 所有参数的构造函数
- *
- * @author chenhx
- * @version Blockchain.java, v 0.1 2018-10-11 下午 9:20
  */
 
+@Slf4j
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Slf4j
 public class Blockchain {
 
     private String lastBlockHash;
@@ -45,8 +37,6 @@ public class Blockchain {
 
     /**
      * 从 DB 中恢复区块链数据
-     *
-     * @return
      */
     public static Blockchain initBlockchainFromDB() {
         String lastBlockHash = RocksDBUtils.getInstance().getLastBlockHash();
@@ -131,8 +121,6 @@ public class Blockchain {
 
     /**
      * 获取区块链迭代器
-     *
-     * @return
      */
     public BlockchainIterator getBlockchainIterator() {
         return new BlockchainIterator(lastBlockHash);

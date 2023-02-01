@@ -1,32 +1,46 @@
 package com.github.lansheng228.blockchain.controller;
 
+import com.github.lansheng228.blockchain.enums.StdApiValidationErrorEnum;
+import com.github.lansheng228.blockchain.exception.StdApiException;
+import com.github.lansheng228.blockchain.response.ApiExtResponse;
+import com.github.lansheng228.blockchain.response.BlocksRet;
+import com.github.lansheng228.blockchain.service.IndexService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+@Slf4j
+@Validated
 @RestController
 @RequestMapping("ui")
 public class IndexController {
+
+    @Autowired
+    private IndexService indexService;
 
     /**
      * 用于输出整个区块链的数据
      */
     @RequestMapping("chain")
-    public void chain() {
-//        Blockchain blockChain = Blockchain.initBlockchainFromDB();
-//        Map<String, Object> response = new HashMap<String, Object>();
-//        List<Block> blocks = new ArrayList<>();
-//        while (blockChain.getBlockchainIterator().hashNext()) {
-//            blocks.add(blockChain.getBlockchainIterator().next());
-//        }
-//        response.put("blocks", blocks);
-//        response.put("length", blockChain.getAllBlockHash().size());
-//
-//        JSONObject jsonResponse = new JSONObject(response);
-//        resp.setContentType("application/json");
-//        PrintWriter printWriter = resp.getWriter();
-//        printWriter.println(jsonResponse);
-//        printWriter.close();
+    public ApiExtResponse<BlocksRet> chain() {
+        log.info("chain param: ");
+
+        try {
+            BlocksRet ret = indexService.chain();
+            log.info("chain success. ret: {}", ret);
+            return ApiExtResponse.ok(ret);
+        } catch (StdApiException e) {
+            log.warn("chain error with custom. exception: {}", e.getMessage(), e);
+            return ApiExtResponse.error(e.getCode(), e.getDesc());
+        } catch (Exception e) {
+            log.warn("chain error without custom. exception: {}", e.getMessage(), e);
+            return ApiExtResponse.error(
+                    StdApiValidationErrorEnum.SYSTEM_EXCEPTION.getCode(),
+                    StdApiValidationErrorEnum.SYSTEM_EXCEPTION.getDesc());
+        }
     }
 
     /**

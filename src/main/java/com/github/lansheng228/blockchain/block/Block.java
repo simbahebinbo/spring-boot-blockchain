@@ -1,7 +1,3 @@
-/**
- * fshows.com
- * Copyright (C) 2013-2018 All Rights Reserved.
- */
 package com.github.lansheng228.blockchain.block;
 
 import com.github.lansheng228.blockchain.pow.PowResult;
@@ -9,8 +5,10 @@ import com.github.lansheng228.blockchain.pow.ProofOfWork;
 import com.github.lansheng228.blockchain.transaction.MerkleTree;
 import com.github.lansheng228.blockchain.transaction.Transaction;
 import com.github.lansheng228.blockchain.util.ByteUtils;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigInteger;
@@ -18,13 +16,12 @@ import java.math.BigInteger;
 /**
  * 区块
  * 暂定区块体积为4M
- *
- * @author chenhx
- * @version Block.java, v 0.1 2018-10-11 下午 9:16
  */
 @Slf4j
 @Data
-@ToString
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Block {
     private String version = "1.0.0";
     /**

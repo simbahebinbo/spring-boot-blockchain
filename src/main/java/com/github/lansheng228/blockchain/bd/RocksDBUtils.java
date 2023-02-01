@@ -1,7 +1,3 @@
-/**
- * fshows.com
- * Copyright (C) 2013-2018 All Rights Reserved.
- */
 package com.github.lansheng228.blockchain.bd;
 
 import com.github.lansheng228.blockchain.block.Block;
@@ -18,11 +14,7 @@ import java.util.Map;
 
 /**
  * 存储
- * 暂时选择Redis，但是后期需要更改数据库，所以一定要做到数据库存储之间的兼容
  * 暂定10分钟生成一个区块
- *
- * @author chenhx
- * @version RocksDB.java, v 0.1 2018-10-13 下午 4:46
  */
 @Slf4j
 public class RocksDBUtils {
@@ -126,8 +118,6 @@ public class RocksDBUtils {
 
     /**
      * 保存最新一个区块的Hash值
-     *
-     * @param tipBlockHash
      */
     public void putLastBlockHash(String tipBlockHash) {
         try {
@@ -141,8 +131,6 @@ public class RocksDBUtils {
 
     /**
      * 查询最新一个区块的Hash值
-     *
-     * @return
      */
     public String getLastBlockHash() {
         byte[] lastBlockHashBytes = blocksBucket.get(LAST_BLOCK_KEY);
@@ -154,8 +142,6 @@ public class RocksDBUtils {
 
     /**
      * 保存区块
-     *
-     * @param block
      */
     public void putBlock(Block block) {
         try {
@@ -169,9 +155,6 @@ public class RocksDBUtils {
 
     /**
      * 查询区块
-     *
-     * @param blockHash
-     * @return
      */
     public Block getBlock(String blockHash) {
         byte[] blockBytes = blocksBucket.get(blockHash);
@@ -183,8 +166,6 @@ public class RocksDBUtils {
 
     /**
      * 获取最新一个区块
-     *
-     * @return
      */
     public Block getLastBlock() {
         String lastBlockHash = getLastBlockHash();
@@ -212,8 +193,6 @@ public class RocksDBUtils {
 
     /**
      * 一次性放入所有UTXO数据
-     *
-     * @param utxoDatas
      */
     public void initAllUTXOs(Map<String, byte[]> utxoDatas) {
         try {
@@ -227,9 +206,8 @@ public class RocksDBUtils {
 
     /**
      * 保存UTXO数据
-     *
-     * @param key   交易ID
-     * @param utxos UTXOs
+     * key   交易ID
+     * utxos UTXOs
      */
     public void putUTXOs(String key, TXOutput[] utxos) {
         try {
@@ -243,8 +221,7 @@ public class RocksDBUtils {
 
     /**
      * 查询UTXO数据
-     *
-     * @param key 交易ID
+     * key 交易ID
      */
     public TXOutput[] getUTXOs(String key) {
         byte[] utxosByte = chainstateBucket.get(key);
@@ -257,8 +234,7 @@ public class RocksDBUtils {
 
     /**
      * 删除 UTXO 数据
-     *
-     * @param key 交易ID
+     * key 交易ID
      */
     public void deleteUTXOs(String key) {
         try {
