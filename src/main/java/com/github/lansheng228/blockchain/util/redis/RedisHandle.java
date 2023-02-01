@@ -19,9 +19,6 @@ import java.util.regex.Pattern;
 
 /**
  * 增删改 -不能在这里面抓取异常 -因为可能有事务处理
- *
- * @author chenhx
- * @version RedisHandle.java, v 0.1 2018-10-11 下午 9:18
  */
 @Component
 public class RedisHandle implements RedisCommand<String, Object> {

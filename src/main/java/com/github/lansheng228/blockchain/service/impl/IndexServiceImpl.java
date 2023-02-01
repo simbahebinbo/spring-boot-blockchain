@@ -16,14 +16,20 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public BlocksRet chain() {
-        Blockchain blockChain = Blockchain.initBlockchainFromDB();
-        List<Block> blocks = new ArrayList<>();
-        while (blockChain.getBlockchainIterator().hashNext()) {
-            Block block = blockChain.getBlockchainIterator().next();
-            blocks.add(block);
+        int length = 0;
+        try {
+            Blockchain blockChain = Blockchain.initBlockchainFromDB();
+            List<Block> blocks = new ArrayList<>();
+            while (blockChain.getBlockchainIterator().hashNext()) {
+                Block block = blockChain.getBlockchainIterator().next();
+                blocks.add(block);
+            }
+            length = blockChain.getAllBlockHash().size();
+            log.info("blocks: {}, length: {}", blocks, length);
+        } catch (Exception e) {
+            log.warn(e.getMessage());
         }
-        int length = blockChain.getAllBlockHash().size();
-        log.info("blocks: {}, length: {}", blocks, length);
+
 
         BlocksRet ret = BlocksRet.builder()
 //                .shortName(cache.getShortName())

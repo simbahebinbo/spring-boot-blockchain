@@ -11,6 +11,7 @@ import org.rocksdb.RocksDB;
 import org.rocksdb.RocksDBException;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 存储
@@ -137,7 +138,7 @@ public class RocksDBUtils {
         if (lastBlockHashBytes != null) {
             return (String) SerializeUtils.deserialize(lastBlockHashBytes);
         }
-        return "";
+        return null;
     }
 
     /**
@@ -157,11 +158,14 @@ public class RocksDBUtils {
      * 查询区块
      */
     public Block getBlock(String blockHash) {
+        if (Objects.isNull(blockHash)) {
+            throw new RuntimeException("Fail to get block. blockHash is null");
+        }
         byte[] blockBytes = blocksBucket.get(blockHash);
         if (blockBytes != null) {
             return (Block) SerializeUtils.deserialize(blockBytes);
         }
-        throw new RuntimeException("Fail to get block , don`t exist ! blockHash=" + blockHash);
+        throw new RuntimeException("Fail to get block , do not exist ! blockHash=" + blockHash);
     }
 
     /**

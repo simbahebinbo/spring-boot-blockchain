@@ -48,10 +48,8 @@ public class Blockchain {
 
 
     /**
-     * <p> 创建区块链 </p>
-     *
-     * @param address 钱包地址
-     * @return
+     * 创建区块链
+     * address 钱包地址
      */
     public static Blockchain createBlockchain(String address) {
         String lastBlockHash = RocksDBUtils.getInstance().getLastBlockHash();
@@ -70,8 +68,7 @@ public class Blockchain {
 
     /**
      * 打包交易，进行挖矿
-     *
-     * @param transactions
+     * transactions
      */
     public Block mineBlock(Transaction[] transactions) {
         // 挖矿前，先验证交易记录
@@ -89,9 +86,7 @@ public class Blockchain {
     }
 
     /**
-     * <p> 添加区块  </p>
-     *
-     * @param block
+     * 添加区块
      */
     private void addBlock(Block block) {
         RocksDBUtils.getInstance().putLastBlockHash(block.getHash());
@@ -100,9 +95,7 @@ public class Blockchain {
     }
 
     /**
-     * <p> 添加区块  </p>
-     *
-     * @param block
+     * 添加区块
      */
     public void saveBlock(Block block) {
         Block existBlock = RocksDBUtils.getInstance().getBlock(block.getHash());
@@ -128,8 +121,6 @@ public class Blockchain {
 
     /**
      * 查找所有的 unspent transaction outputs
-     *
-     * @return
      */
     public Map<String, TXOutput[]> findAllUTXOs() {
         Map<String, int[]> allSpentTXOs = this.getAllSpentTXOs();
@@ -162,8 +153,7 @@ public class Blockchain {
 
     /**
      * 从交易输入中查询区块链中所有已被花费了的交易输出
-     *
-     * @return 交易ID以及对应的交易输出下标地址
+     * 返回 交易ID以及对应的交易输出下标地址
      */
     private Map<String, int[]> getAllSpentTXOs() {
         // 定义TxId ——> spentOutIndex[]，存储交易ID与已被花费的交易输出数组索引值
@@ -193,9 +183,7 @@ public class Blockchain {
 
     /**
      * 依据交易ID查询交易信息
-     *
-     * @param txId 交易ID
-     * @return
+     * txId 交易ID
      */
     private Transaction findTransaction(byte[] txId) {
         for (BlockchainIterator iterator = this.getBlockchainIterator(); iterator.hashNext(); ) {
@@ -294,8 +282,6 @@ public class Blockchain {
 
         /**
          * 是否有下一个区块
-         *
-         * @return
          */
         public boolean hashNext() {
             if (ByteUtils.ZERO_HASH.equals(currentBlockHash)) {
@@ -314,8 +300,6 @@ public class Blockchain {
 
         /**
          * 返回区块
-         *
-         * @return
          */
         public Block next() {
             Block currentBlock = RocksDBUtils.getInstance().getBlock(currentBlockHash);
@@ -326,5 +310,4 @@ public class Blockchain {
             return null;
         }
     }
-
 }
