@@ -22,14 +22,14 @@
         <guava.version>31.1-jre</guava.version>
         <jopt-simple.version>5.0.4</jopt-simple.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <lombok.version>1.18.24</lombok.version>
         <commons-codec.version>1.15</commons-codec.version>
+        <lombok.version>1.18.26</lombok.version>
         <commons-cli.version>1.5.0</commons-cli.version>
         <kryo.version>5.4.0</kryo.version>
         <rocksdbjni.version>7.9.2</rocksdbjni.version>
         <javaee-api.version>8.0.1</javaee-api.version>
-        <json.version>20220924</json.version>
-        <bcprov-jdk15on.version>1.70</bcprov-jdk15on.version>
+        <json.version>20230227</json.version>
+        <bcprov.version>1.72</bcprov.version>
 
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <mockito.version>5.1.0</mockito.version>
@@ -134,8 +134,8 @@
         <!-- 加密算法 -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>${bcprov-jdk15on.version}</version>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>${bcprov.version}</version>
         </dependency>
 
         <dependency>
